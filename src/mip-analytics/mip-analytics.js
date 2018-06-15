@@ -96,12 +96,14 @@ define(function (require) {
             var key = 'IMAGE' + (new Date()).getTime();
             var img = window[key] = new Image();
             img.onload = function () {
+                console.log('img onload trigger!!!');
                 // 防止多次触发onload;
                 img.onload = img.onerror = img.onabort = null;
                 // 清空引用,避免内存泄漏
                 window[key] = null;
                 img = null;
             };
+            console.log(9999999);
             img.src = url;
         },
 
@@ -157,6 +159,8 @@ define(function (require) {
                 util.event.delegate(dom, eventTag, eventName, function (event) {
                     var params = this.getAttribute('data-click') || '';
                     var paramsObj = (new Function('return ' + params))();
+
+                    console.log(paramsObj);
 
                     log.send(el, paramsObj);
                 }, false);

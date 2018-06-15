@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title><!-- 标题 --></title>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <link rel="canonical" href="对应的原页面地址">
+    <style mip-custom>
+    /* 自定义样式 */
+    </style>
+</head>
+<body>
+<mip-pix src="http://local.test.com/api/show?event=onload&page_id=xxx&t=${TIME}"></mip-pix>
+<!-- 正文 -->
+<h1>mip test page</h1>
+<div class="tests">
+    <br>
+    <a href="http://www.baidu.com" class="alink">www.baidu.com 点击这个链接会服务端会收到两个或以上打点请求</a>
+    <br>
+    <button class="button">button 没有问题</button>
+</div>
+<mip-analytics>
+    <script type="application/json">
+    {
+        "hosts" : {
+            "myhost" : "http://local.test.com/api/show?"
+        },
+        "setting": {
+            "click": [
+                {
+                    "selector" : ".tests",
+                    "tag": ".alink",
+                    "host" : "myhost",
+                    "queryString" : {
+                        "event": "alink_click"
+                    }
+                },
+                {
+                    "selector" : ".tests",
+                    "tag": ".button",
+                    "host" : "myhost",
+                    "queryString" : {
+                        "event": "button_click"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+</mip-analytics>
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-analytics/mip-analytics.js"></script>
+</body>
+</html>
